@@ -7,7 +7,7 @@ const connectToDB = require('./config/db');
 
 
 const app = express();
-const port = 3003;
+const port = 3004;
 const MONGODB_URI = "mongodb+srv://rashi:rashi@cluster0.kvlukpg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
