@@ -1,9 +1,9 @@
 const express = require('express');
 require("dotenv").config();
 const authMiddleware = require('./authMiddleware');
-const taskRoutes = require('./task');
-const userRouter = require('./auth');
+const userRouter = require('./routes/auth');
 const connectToDB = require('./config/db');
+const taskRouter = require('./routes/taskRoutes');
 
 
 const app = express();
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use('/api', userRouter);
-app.use('/api/tasks', authMiddleware, taskRoutes);
+app.use('/api/tasks', authMiddleware, taskRouter );
 
 
 app.listen(port, async () => {

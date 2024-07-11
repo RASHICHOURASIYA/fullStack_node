@@ -1,11 +1,10 @@
 const express = require('express');
 
-const authMiddleware = require('./authMiddleware');
-const Task = require('./models/Task');
+const authMiddleware = require('./backend/authMiddleware');
+const Task = require('./backend/models/Task');
 
 const router = express.Router();
 
-// Create task
 router.post('/', authMiddleware, async (req, res) => {
   const { title, description, status } = req.body;
   try {
@@ -17,7 +16,6 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-// Read all tasks
 router.get('/', async (req, res) => {
   try {
     const tasks = await Task.find();
@@ -27,7 +25,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Update task by ID
 router.put('/:id', authMiddleware, async (req, res) => {
   const { title, description, status } = req.body;
   try {
@@ -38,7 +35,6 @@ router.put('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Delete task by ID
 router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);
